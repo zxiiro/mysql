@@ -1,0 +1,24 @@
+#!/bin/bash
+#######################################################################
+#
+# Copyright (c) 2014 Eclipse Foundation and others.
+#
+# All rights reserved. This program and the accompanying materials
+# are made available under the terms of the Eclipse Public License v1.0
+# which accompanies this distribution, and is available at
+# http://www.eclipse.org/legal/epl-v10.html
+#
+# Contributors:
+#   Thanh Ha (Eclipse Foundation) - initial implementation
+#
+#######################################################################
+
+PASS="eclipse_changeme"
+
+/usr/bin/mysqld_safe > /dev/null 2>&1 &
+sleep 10
+
+echo "Create admin user"
+mysql -uroot -e "GRANT ALL ON *.* TO admin@'%' IDENTIFIED BY '$PASS' WITH GRANT OPTION; FLUSH PRIVILEGES"
+
+mysqladmin -uroot shutdown
