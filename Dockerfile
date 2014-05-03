@@ -21,7 +21,7 @@ RUN apt-get update
 RUN DEBIAN_FRONTEND=noninteractive apt-get -y install mysql-server
 
 # Pull in scripts and resources
-ADD etc/supervisor/conf.d/mysqld.conf /etc/supervisor/conf.d/mysqld.conf
+ADD etc/supervisor/conf.d /etc/supervisor/conf.d
 ADD etc/mysql/my.cnf /etc/mysql/my.cnf
 ADD scripts/mysql /scripts/mysql
 RUN chmod 755 /scripts/mysql/*.sh
@@ -29,3 +29,4 @@ RUN /scripts/mysql/mysql-setup.sh
 
 # MySQL
 EXPOSE 3306
+
